@@ -1,0 +1,75 @@
+namespace DSA_Drill2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Please enter array size: ");
+            int userlenght = Convert.ToInt32(Console.ReadLine());
+            int[] array = new int[userlenght];
+            array = RandArr(array);
+            Console.WriteLine("Unsorted");
+            Console.WriteLine(string.Join(",", array));
+            array = Sort(array);
+            Console.WriteLine("Sorted");
+            Console.WriteLine(string.Join(",", array));
+            Console.Write("Please enter Item to search: ");
+            int key = Convert.ToInt32(Console.ReadLine());
+            int index = Search(array, key);
+            if (index == -1)
+            {
+                Console.WriteLine("item is not in the array");
+            }
+            else
+            {
+                Console.Write($"Item {key} was found in index {index}");
+            }
+
+
+        }
+        
+        public static int[] RandArr(int[] array)
+        {
+            Random rand = new Random();
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = rand.Next(0, 101);
+            }
+            return array;
+        }
+        public static int[] Sort(int[] array) //Bubble Sort
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = 0; j < array.Length - 1; j++)
+                {
+                    if (array[j] > array[j + 1])
+                    {
+                        int temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+                    }
+                }
+            }
+            return array;
+        }
+        public static int Search(int[] array, int key) // Linear Search
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (key == array[i])
+                {
+                    return i;
+                }
+                else if (key < array[i])
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
+}
+
+
+
